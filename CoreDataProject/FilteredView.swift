@@ -12,6 +12,7 @@ import CoreData
 struct FilteredView<T: NSManagedObject, Content: View>: View {
     var fetchRequest: FetchRequest<T>
     var singers: FetchedResults<T> { fetchRequest.wrappedValue }
+    var howToSort : [NSSortDescriptor]
 
     // this is our content closure; we'll call this once for each item in the list
     let content: (T) -> Content
@@ -22,8 +23,9 @@ struct FilteredView<T: NSManagedObject, Content: View>: View {
         }
     }
 
-    init(filterKey: String, filterValue: String, @ViewBuilder content: @escaping (T) -> Content) {
-        fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors: [], predicate: NSPredicate(format: "%K BEGINSWITH %@", filterKey, filterValue))
+    init(filterKey: String, filterValue: String, howToSort : [NSSortDescriptor], @ViewBuilder content: @escaping (T) -> Content) {
+        self.howToSort = howToSort
+        fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors: howToSort, predicate: NSPredicate(format: "%K BEGINSWITH %@", filterKey, filterValue))
         self.content = content
     }
 }

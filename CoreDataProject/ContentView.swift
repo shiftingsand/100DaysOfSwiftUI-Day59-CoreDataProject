@@ -11,12 +11,17 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
-    @State private var lastNameFilter = "A"    
+    @State private var lastNameFilter = "A"
+    // day 59 - challenge 1
+    let howToSort : [NSSortDescriptor] = [
+        NSSortDescriptor(keyPath: \Singer.lastName, ascending: false),
+        NSSortDescriptor(keyPath: \Singer.firstName, ascending: false)
+    ]
     
     var body: some View {
         VStack {
             //FilteredView(filter: lastNameFilter)
-            FilteredView(filterKey: "lastName", filterValue: lastNameFilter) { (singer: Singer) in
+            FilteredView(filterKey: "lastName", filterValue: lastNameFilter, howToSort: howToSort) { (singer: Singer) in
                 Text("\(singer.wrappedFirstName) \(singer.wrappedLastName)")
             }
 
@@ -24,6 +29,10 @@ struct ContentView: View {
                 let taylor = Singer(context: self.moc)
                 taylor.firstName = "Taylor"
                 taylor.lastName = "Swift"
+                
+                let taylor2 = Singer(context: self.moc)
+                             taylor2.firstName = "Mary"
+                             taylor2.lastName = "Swift"
 
                 let ed = Singer(context: self.moc)
                 ed.firstName = "Ed"
