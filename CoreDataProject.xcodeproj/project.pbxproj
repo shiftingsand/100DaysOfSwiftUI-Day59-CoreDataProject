@@ -19,6 +19,7 @@
 		96E1394424855F4A007BCD50 /* Singer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E1394224855F4A007BCD50 /* Singer+CoreDataClass.swift */; };
 		96E1394524855F4A007BCD50 /* Singer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E1394324855F4A007BCD50 /* Singer+CoreDataProperties.swift */; };
 		96E13947248565B1007BCD50 /* FilteredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E13946248565B1007BCD50 /* FilteredView.swift */; };
+		96E139512485B14D007BCD50 /* Predicates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E139502485B14D007BCD50 /* Predicates.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		96E1394224855F4A007BCD50 /* Singer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Singer+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		96E1394324855F4A007BCD50 /* Singer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Singer+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		96E13946248565B1007BCD50 /* FilteredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredView.swift; sourceTree = "<group>"; };
+		96E139502485B14D007BCD50 /* Predicates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Predicates.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				969263142482B3630080172B /* SceneDelegate.swift */,
 				969263192482B3630080172B /* ContentView.swift */,
 				96E13946248565B1007BCD50 /* FilteredView.swift */,
+				96E139502485B14D007BCD50 /* Predicates.swift */,
 				9692631B2482B3660080172B /* Assets.xcassets */,
 				969263202482B3660080172B /* LaunchScreen.storyboard */,
 				969263232482B3660080172B /* Info.plist */,
@@ -169,6 +172,7 @@
 				969263132482B3630080172B /* AppDelegate.swift in Sources */,
 				969263152482B3630080172B /* SceneDelegate.swift in Sources */,
 				9692631A2482B3630080172B /* ContentView.swift in Sources */,
+				96E139512485B14D007BCD50 /* Predicates.swift in Sources */,
 				9692632B2482BB7D0080172B /* Movie+CoreDataClass.swift in Sources */,
 				96E1394524855F4A007BCD50 /* Singer+CoreDataProperties.swift in Sources */,
 				9692632C2482BB7D0080172B /* Movie+CoreDataProperties.swift in Sources */,

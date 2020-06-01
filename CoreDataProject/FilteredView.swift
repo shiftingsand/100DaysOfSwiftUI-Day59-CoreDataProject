@@ -13,20 +13,29 @@ struct FilteredView<T: NSManagedObject, Content: View>: View {
     var fetchRequest: FetchRequest<T>
     var singers: FetchedResults<T> { fetchRequest.wrappedValue }
     var howToSort : [NSSortDescriptor]
-
+    
     // this is our content closure; we'll call this once for each item in the list
     let content: (T) -> Content
-
+    
     var body: some View {
         List(fetchRequest.wrappedValue, id: \.self) { singer in
             self.content(singer)
         }
     }
-
-    init(filterKey: String, filterValue: String, howToSort : [NSSortDescriptor], whatPredicate: String, @ViewBuilder content: @escaping (T) -> Content) {
+    
+    init(filterKey: String, filterValue: String, howToSort : [NSSortDescriptor], whatPredicate: MyPredicates, @ViewBuilder content: @escaping (T) -> Content) {
         // "%K BEGINSWITH %@"
         // day 59 - challenge 2
-        let finalPredicate = "%K \(whatPredicate) %@"
+        let finalPredicate : String
+        
+        // day 59 - challenge 3
+        switch whatPredicate {
+        case .beginsWith:
+            finalPredicate = "%K BEGINSWITH %@"
+        default:
+            finalPredicate = "%K CONTAINS %@"
+        }
+        
         self.howToSort = howToSort
         fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors: howToSort, predicate: NSPredicate(format: finalPredicate, filterKey, filterValue))
         self.content = content

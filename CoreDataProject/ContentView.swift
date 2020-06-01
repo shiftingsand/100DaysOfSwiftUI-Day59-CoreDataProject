@@ -17,11 +17,12 @@ struct ContentView: View {
         NSSortDescriptor(keyPath: \Singer.lastName, ascending: false),
         NSSortDescriptor(keyPath: \Singer.firstName, ascending: false)
     ]
+    @State private var whatPredicate = MyPredicates.beginsWith
     
     var body: some View {
         VStack {
             //FilteredView(filter: lastNameFilter)
-            FilteredView(filterKey: "lastName", filterValue: lastNameFilter, howToSort: howToSort, whatPredicate: "BEGINSWITH") { (singer: Singer) in
+            FilteredView(filterKey: "lastName", filterValue: lastNameFilter, howToSort: howToSort, whatPredicate: whatPredicate) { (singer: Singer) in
                 Text("\(singer.wrappedFirstName) \(singer.wrappedLastName)")
             }
 
@@ -50,7 +51,20 @@ struct ContentView: View {
             }
 
             Button("Show S") {
-                self.lastNameFilter = "S"
+                if self.whatPredicate == MyPredicates.beginsWith {
+                    self.lastNameFilter = "S"
+                } else {
+                    self.lastNameFilter = "wif"
+                }
+            }
+            
+            // day 59 - challenge 3
+            Button("Switch") {
+                if self.whatPredicate == .beginsWith {
+                    self.whatPredicate = .contains
+                } else {
+                    self.whatPredicate = .beginsWith
+                }
             }
         }
     }
