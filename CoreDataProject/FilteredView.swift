@@ -23,9 +23,12 @@ struct FilteredView<T: NSManagedObject, Content: View>: View {
         }
     }
 
-    init(filterKey: String, filterValue: String, howToSort : [NSSortDescriptor], @ViewBuilder content: @escaping (T) -> Content) {
+    init(filterKey: String, filterValue: String, howToSort : [NSSortDescriptor], whatPredicate: String, @ViewBuilder content: @escaping (T) -> Content) {
+        // "%K BEGINSWITH %@"
+        // day 59 - challenge 2
+        let finalPredicate = "%K \(whatPredicate) %@"
         self.howToSort = howToSort
-        fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors: howToSort, predicate: NSPredicate(format: "%K BEGINSWITH %@", filterKey, filterValue))
+        fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors: howToSort, predicate: NSPredicate(format: finalPredicate, filterKey, filterValue))
         self.content = content
     }
 }
